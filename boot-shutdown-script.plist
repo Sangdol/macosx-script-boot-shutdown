@@ -7,7 +7,7 @@
     You should customize the following placeholders:
 
 - BOOT.SHUTDOWN.SERVICE : If you don't know, leave it as is
-- SCRIPT_PATH : the path where the boot-shutdown.sh script is stored. 
+- SCRIPT_PATH : the path where the boot-shutdown.sh script is stored.
 - LOG_PATH : the path where the logs are stored. If you don't care about logs, use: /tmp
 
 -->
@@ -17,24 +17,23 @@
 
 <key>ProgramArguments</key>
 <array>
-  <string>SCRIPT_PATH/boot-shutdown.sh</string>
+  <string>/bin/bash</string>
+  <string>-c</string>
+  <string>$HOME/projects/macos-script-boot-shutdown/boot-shutdown.sh</string>
 </array>
 
 <!--
-set RunAtLoad false if you don't want that script starts 
+set RunAtLoad false if you don't want that script starts
 automatically every time your mac os x boots
 -->
 <key>RunAtLoad</key>
 <true/>
 
-<key>WorkingDirectory</key>
-<string>SCRIPT_PATH</string>
-
 <key>StandardOutPath</key>
-<string>LOG_PATH/boot-shutdown.log</string>
+<string>/usr/local/var/log/boot-shutdown.log</string>
 
 <key>StandardErrorPath</key>
-<string>LOG_PATH/boot-shutdown.err</string>
+<string>/usr/local/var/log/boot-shutdown.err</string>
 
 <key>ExitTimeOut</key>
 <integer>600</integer>

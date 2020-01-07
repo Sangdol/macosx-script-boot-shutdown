@@ -7,16 +7,18 @@
 
 function shutdown()
 {
-  echo `date` " " `whoami` " Received a signal to shutdown"
+  echo "$(date) $(whoami) Received a signal to shutdown"
 
-  # INSERT HERE THE COMMAND YOU WANT EXECUTE AT SHUTDOWN
+  # Empty dns list in case it has 127.0.0.1 for pihole.
+  networksetup -setdnsservers Wi-Fi Empty
+  echo "The DNS list is cleared."
 
   exit 0
 }
 
 function startup()
 {
-  echo `date` " " `whoami` " Starting..."
+  echo "$(date) $(whoami) Starting..."
 
   # INSERT HERE THE COMMAND YOU WANT EXECUTE AT STARTUP
 
@@ -25,7 +27,7 @@ function startup()
 }
 
 trap shutdown SIGTERM
-trap shutdown SIGKILL
+trap shutdown INT  # To test with ctrl C
 
 startup;
 
